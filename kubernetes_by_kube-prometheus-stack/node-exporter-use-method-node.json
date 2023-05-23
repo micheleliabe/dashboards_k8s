@@ -1,0 +1,850 @@
+{
+  "uid": "c884253a-1f6b-47af-a395-8536078fca02",
+  "slug": "",
+  "title": "Node Exporter / USE Method / Node",
+  "originalTitle": "",
+  "tags": [
+    "node-exporter-mixin"
+  ],
+  "style": "dark",
+  "timezone": "utc",
+  "editable": false,
+  "hideControls": false,
+  "sharedCrosshair": false,
+  "panels": null,
+  "rows": [
+    {
+      "title": "CPU",
+      "showTitle": true,
+      "collapse": false,
+      "editable": false,
+      "height": "",
+      "panels": [
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 2,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 6,
+          "title": "CPU Utilisation",
+          "transparent": false,
+          "type": "graph",
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "fill": 10,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "instance:node_cpu_utilisation:rate5m{job=\"node-exporter\", instance=\"$instance\", cluster=\"$cluster\"} != 0",
+              "intervalFactor": 2,
+              "legendFormat": "Utilisation",
+              "format": "time_series"
+            }
+          ],
+          "tooltip": {
+            "shared": true,
+            "value_type": "individual",
+            "sort": 2
+          },
+          "xaxis": {
+            "format": "",
+            "logBase": 0,
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "percentunit",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "percentunit",
+              "logBase": 1,
+              "show": true
+            }
+          ]
+        },
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 3,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 6,
+          "title": "CPU Saturation (Load1 per CPU)",
+          "transparent": false,
+          "type": "graph",
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "fill": 10,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "instance:node_load1_per_cpu:ratio{job=\"node-exporter\", instance=\"$instance\", cluster=\"$cluster\"} != 0",
+              "intervalFactor": 2,
+              "legendFormat": "Saturation",
+              "format": "time_series"
+            }
+          ],
+          "tooltip": {
+            "shared": true,
+            "value_type": "individual",
+            "sort": 2
+          },
+          "xaxis": {
+            "format": "",
+            "logBase": 0,
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "percentunit",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "percentunit",
+              "logBase": 1,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null
+    },
+    {
+      "title": "Memory",
+      "showTitle": true,
+      "collapse": false,
+      "editable": false,
+      "height": "",
+      "panels": [
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 4,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 6,
+          "title": "Memory Utilisation",
+          "transparent": false,
+          "type": "graph",
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "fill": 10,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "instance:node_memory_utilisation:ratio{job=\"node-exporter\", instance=\"$instance\", cluster=\"$cluster\"} != 0",
+              "intervalFactor": 2,
+              "legendFormat": "Utilisation",
+              "format": "time_series"
+            }
+          ],
+          "tooltip": {
+            "shared": true,
+            "value_type": "individual",
+            "sort": 2
+          },
+          "xaxis": {
+            "format": "",
+            "logBase": 0,
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "percentunit",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "percentunit",
+              "logBase": 1,
+              "show": true
+            }
+          ]
+        },
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 5,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 6,
+          "title": "Memory Saturation (Major Page Faults)",
+          "transparent": false,
+          "type": "graph",
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "fill": 10,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "instance:node_vmstat_pgmajfault:rate5m{job=\"node-exporter\", instance=\"$instance\", cluster=\"$cluster\"} != 0",
+              "intervalFactor": 2,
+              "legendFormat": "Major page Faults",
+              "format": "time_series"
+            }
+          ],
+          "tooltip": {
+            "shared": true,
+            "value_type": "individual",
+            "sort": 2
+          },
+          "xaxis": {
+            "format": "",
+            "logBase": 0,
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "rds",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "rds",
+              "logBase": 1,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null
+    },
+    {
+      "title": "Network",
+      "showTitle": true,
+      "collapse": false,
+      "editable": false,
+      "height": "",
+      "panels": [
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 6,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 6,
+          "title": "Network Utilisation (Bytes Receive/Transmit)",
+          "transparent": false,
+          "type": "graph",
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "fill": 10,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "seriesOverrides": [
+            {
+              "alias": "/Receive/",
+              "stack": "A"
+            },
+            {
+              "alias": "/Transmit/",
+              "stack": "B",
+              "transform": "negative-Y"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "instance:node_network_receive_bytes_excluding_lo:rate5m{job=\"node-exporter\", instance=\"$instance\", cluster=\"$cluster\"} != 0",
+              "intervalFactor": 2,
+              "legendFormat": "Receive",
+              "format": "time_series"
+            },
+            {
+              "refId": "B",
+              "expr": "instance:node_network_transmit_bytes_excluding_lo:rate5m{job=\"node-exporter\", instance=\"$instance\", cluster=\"$cluster\"} != 0",
+              "intervalFactor": 2,
+              "legendFormat": "Transmit",
+              "format": "time_series"
+            }
+          ],
+          "tooltip": {
+            "shared": true,
+            "value_type": "individual",
+            "sort": 2
+          },
+          "xaxis": {
+            "format": "",
+            "logBase": 0,
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "Bps",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "Bps",
+              "logBase": 1,
+              "show": true
+            }
+          ]
+        },
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 7,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 6,
+          "title": "Network Saturation (Drops Receive/Transmit)",
+          "transparent": false,
+          "type": "graph",
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "fill": 10,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "seriesOverrides": [
+            {
+              "alias": "/ Receive/",
+              "stack": "A"
+            },
+            {
+              "alias": "/ Transmit/",
+              "stack": "B",
+              "transform": "negative-Y"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "instance:node_network_receive_drop_excluding_lo:rate5m{job=\"node-exporter\", instance=\"$instance\", cluster=\"$cluster\"} != 0",
+              "intervalFactor": 2,
+              "legendFormat": "Receive",
+              "format": "time_series"
+            },
+            {
+              "refId": "B",
+              "expr": "instance:node_network_transmit_drop_excluding_lo:rate5m{job=\"node-exporter\", instance=\"$instance\", cluster=\"$cluster\"} != 0",
+              "intervalFactor": 2,
+              "legendFormat": "Transmit",
+              "format": "time_series"
+            }
+          ],
+          "tooltip": {
+            "shared": true,
+            "value_type": "individual",
+            "sort": 2
+          },
+          "xaxis": {
+            "format": "",
+            "logBase": 0,
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "Bps",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "Bps",
+              "logBase": 1,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null
+    },
+    {
+      "title": "Disk IO",
+      "showTitle": true,
+      "collapse": false,
+      "editable": false,
+      "height": "",
+      "panels": [
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 8,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 6,
+          "title": "Disk IO Utilisation",
+          "transparent": false,
+          "type": "graph",
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "fill": 10,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "instance_device:node_disk_io_time_seconds:rate5m{job=\"node-exporter\", instance=\"$instance\", cluster=\"$cluster\"} != 0",
+              "intervalFactor": 2,
+              "legendFormat": "{{device}}",
+              "format": "time_series"
+            }
+          ],
+          "tooltip": {
+            "shared": true,
+            "value_type": "individual",
+            "sort": 2
+          },
+          "xaxis": {
+            "format": "",
+            "logBase": 0,
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "percentunit",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "percentunit",
+              "logBase": 1,
+              "show": true
+            }
+          ]
+        },
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 9,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 6,
+          "title": "Disk IO Saturation",
+          "transparent": false,
+          "type": "graph",
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "fill": 10,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "instance_device:node_disk_io_time_weighted_seconds:rate5m{job=\"node-exporter\", instance=\"$instance\", cluster=\"$cluster\"} != 0",
+              "intervalFactor": 2,
+              "legendFormat": "{{device}}",
+              "format": "time_series"
+            }
+          ],
+          "tooltip": {
+            "shared": true,
+            "value_type": "individual",
+            "sort": 2
+          },
+          "xaxis": {
+            "format": "",
+            "logBase": 0,
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "percentunit",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "percentunit",
+              "logBase": 1,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null
+    },
+    {
+      "title": "Disk Space",
+      "showTitle": true,
+      "collapse": false,
+      "editable": false,
+      "height": "",
+      "panels": [
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 10,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 12,
+          "title": "Disk Space Utilisation",
+          "transparent": false,
+          "type": "graph",
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "fill": 10,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "sort_desc(1 -\n  (\n   max without (mountpoint, fstype) (node_filesystem_avail_bytes{job=\"node-exporter\", fstype!=\"\", instance=\"$instance\", cluster=\"$cluster\"})\n   /\n   max without (mountpoint, fstype) (node_filesystem_size_bytes{job=\"node-exporter\", fstype!=\"\", instance=\"$instance\", cluster=\"$cluster\"})\n  ) != 0\n)\n",
+              "intervalFactor": 2,
+              "legendFormat": "{{device}}",
+              "format": "time_series"
+            }
+          ],
+          "tooltip": {
+            "shared": true,
+            "value_type": "individual",
+            "sort": 2
+          },
+          "xaxis": {
+            "format": "",
+            "logBase": 0,
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "percentunit",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "percentunit",
+              "logBase": 1,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null
+    }
+  ],
+  "templating": {
+    "list": [
+      {
+        "name": "datasource",
+        "type": "datasource",
+        "datasource": null,
+        "refresh": 1,
+        "options": [],
+        "includeAll": false,
+        "allFormat": "",
+        "allValue": "",
+        "multi": false,
+        "multiFormat": "",
+        "query": "prometheus",
+        "regex": "",
+        "current": {
+          "text": [
+            "default"
+          ],
+          "value": "default"
+        },
+        "label": "Data Source",
+        "hide": 0,
+        "sort": 0
+      },
+      {
+        "name": "cluster",
+        "type": "query",
+        "datasource": "$datasource",
+        "refresh": 2,
+        "options": [],
+        "includeAll": false,
+        "allFormat": "",
+        "allValue": "",
+        "multi": false,
+        "multiFormat": "",
+        "query": "label_values(node_time_seconds, cluster)",
+        "regex": "",
+        "current": {
+          "text": [
+            ""
+          ],
+          "value": ""
+        },
+        "label": "",
+        "hide": 2,
+        "sort": 1
+      },
+      {
+        "name": "instance",
+        "type": "query",
+        "datasource": "$datasource",
+        "refresh": 2,
+        "options": [],
+        "includeAll": false,
+        "allFormat": "",
+        "allValue": "",
+        "multi": false,
+        "multiFormat": "",
+        "query": "label_values(node_exporter_build_info{job=\"node-exporter\", cluster=\"$cluster\"}, instance)",
+        "regex": "",
+        "current": {
+          "text": null,
+          "value": null
+        },
+        "label": "",
+        "hide": 0,
+        "sort": 1
+      }
+    ]
+  },
+  "annotations": {
+    "list": []
+  },
+  "refresh": "30s",
+  "schemaVersion": 14,
+  "version": 1,
+  "links": [],
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "graphTooltip": 1
+}

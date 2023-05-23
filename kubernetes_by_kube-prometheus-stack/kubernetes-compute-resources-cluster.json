@@ -1,0 +1,2064 @@
+{
+  "uid": "efa86fd1d0c121a26444b636a3f509a8",
+  "slug": "",
+  "title": "Kubernetes / Compute Resources / Cluster",
+  "originalTitle": "",
+  "tags": [
+    "kubernetes-mixin"
+  ],
+  "style": "dark",
+  "timezone": "utc",
+  "editable": true,
+  "hideControls": false,
+  "sharedCrosshair": false,
+  "panels": null,
+  "rows": [
+    {
+      "title": "Headlines",
+      "showTitle": false,
+      "collapse": false,
+      "editable": false,
+      "height": "100px",
+      "panels": [
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 1,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 2,
+          "title": "CPU Utilisation",
+          "transparent": false,
+          "type": "singlestat",
+          "colors": null,
+          "colorValue": false,
+          "colorBackground": false,
+          "decimals": 0,
+          "format": "percentunit",
+          "gauge": {
+            "maxValue": 0,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": false
+          },
+          "nullPointMode": "null as zero",
+          "sparkline": {},
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "cluster:node_cpu:ratio_rate5m{cluster=\"$cluster\"}",
+              "intervalFactor": 2,
+              "instant": true,
+              "format": "time_series"
+            }
+          ],
+          "thresholds": "70,80",
+          "valueFontSize": "",
+          "valueMaps": null,
+          "valueName": ""
+        },
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 2,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 2,
+          "title": "CPU Requests Commitment",
+          "transparent": false,
+          "type": "singlestat",
+          "colors": null,
+          "colorValue": false,
+          "colorBackground": false,
+          "decimals": 0,
+          "format": "percentunit",
+          "gauge": {
+            "maxValue": 0,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": false
+          },
+          "nullPointMode": "null as zero",
+          "sparkline": {},
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "sum(namespace_cpu:kube_pod_container_resource_requests:sum{cluster=\"$cluster\"}) / sum(kube_node_status_allocatable{job=\"kube-state-metrics\",resource=\"cpu\",cluster=\"$cluster\"})",
+              "intervalFactor": 2,
+              "instant": true,
+              "format": "time_series"
+            }
+          ],
+          "thresholds": "70,80",
+          "valueFontSize": "",
+          "valueMaps": null,
+          "valueName": ""
+        },
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 3,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 2,
+          "title": "CPU Limits Commitment",
+          "transparent": false,
+          "type": "singlestat",
+          "colors": null,
+          "colorValue": false,
+          "colorBackground": false,
+          "decimals": 0,
+          "format": "percentunit",
+          "gauge": {
+            "maxValue": 0,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": false
+          },
+          "nullPointMode": "null as zero",
+          "sparkline": {},
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "sum(namespace_cpu:kube_pod_container_resource_limits:sum{cluster=\"$cluster\"}) / sum(kube_node_status_allocatable{job=\"kube-state-metrics\",resource=\"cpu\",cluster=\"$cluster\"})",
+              "intervalFactor": 2,
+              "instant": true,
+              "format": "time_series"
+            }
+          ],
+          "thresholds": "70,80",
+          "valueFontSize": "",
+          "valueMaps": null,
+          "valueName": ""
+        },
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 4,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 2,
+          "title": "Memory Utilisation",
+          "transparent": false,
+          "type": "singlestat",
+          "colors": null,
+          "colorValue": false,
+          "colorBackground": false,
+          "decimals": 0,
+          "format": "percentunit",
+          "gauge": {
+            "maxValue": 0,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": false
+          },
+          "nullPointMode": "null as zero",
+          "sparkline": {},
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "1 - sum(:node_memory_MemAvailable_bytes:sum{cluster=\"$cluster\"}) / sum(node_memory_MemTotal_bytes{job=\"node-exporter\",cluster=\"$cluster\"})",
+              "intervalFactor": 2,
+              "instant": true,
+              "format": "time_series"
+            }
+          ],
+          "thresholds": "70,80",
+          "valueFontSize": "",
+          "valueMaps": null,
+          "valueName": ""
+        },
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 5,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 2,
+          "title": "Memory Requests Commitment",
+          "transparent": false,
+          "type": "singlestat",
+          "colors": null,
+          "colorValue": false,
+          "colorBackground": false,
+          "decimals": 0,
+          "format": "percentunit",
+          "gauge": {
+            "maxValue": 0,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": false
+          },
+          "nullPointMode": "null as zero",
+          "sparkline": {},
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "sum(namespace_memory:kube_pod_container_resource_requests:sum{cluster=\"$cluster\"}) / sum(kube_node_status_allocatable{job=\"kube-state-metrics\",resource=\"memory\",cluster=\"$cluster\"})",
+              "intervalFactor": 2,
+              "instant": true,
+              "format": "time_series"
+            }
+          ],
+          "thresholds": "70,80",
+          "valueFontSize": "",
+          "valueMaps": null,
+          "valueName": ""
+        },
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 6,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 2,
+          "title": "Memory Limits Commitment",
+          "transparent": false,
+          "type": "singlestat",
+          "colors": null,
+          "colorValue": false,
+          "colorBackground": false,
+          "decimals": 0,
+          "format": "percentunit",
+          "gauge": {
+            "maxValue": 0,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": false
+          },
+          "nullPointMode": "null as zero",
+          "sparkline": {},
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "sum(namespace_memory:kube_pod_container_resource_limits:sum{cluster=\"$cluster\"}) / sum(kube_node_status_allocatable{job=\"kube-state-metrics\",resource=\"memory\",cluster=\"$cluster\"})",
+              "intervalFactor": 2,
+              "instant": true,
+              "format": "time_series"
+            }
+          ],
+          "thresholds": "70,80",
+          "valueFontSize": "",
+          "valueMaps": null,
+          "valueName": ""
+        }
+      ],
+      "repeat": null
+    },
+    {
+      "title": "CPU",
+      "showTitle": true,
+      "collapse": false,
+      "editable": false,
+      "height": "250px",
+      "panels": [
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 7,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 12,
+          "title": "CPU Usage",
+          "transparent": false,
+          "type": "graph",
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "fill": 10,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 0,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "",
+              "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{cluster=\"$cluster\"}) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "legendFormat": "{{namespace}}",
+              "format": "time_series"
+            }
+          ],
+          "tooltip": {
+            "shared": false,
+            "value_type": "individual",
+            "sort": 2
+          },
+          "xaxis": {
+            "format": "",
+            "logBase": 0,
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null
+    },
+    {
+      "title": "CPU Quota",
+      "showTitle": true,
+      "collapse": false,
+      "editable": false,
+      "height": "250px",
+      "panels": [
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 8,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 12,
+          "title": "CPU Quota",
+          "transparent": false,
+          "type": "table",
+          "columns": null,
+          "styles": [
+            {
+              "alias": "Time",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "hidden"
+            },
+            {
+              "alias": "Pods",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Value #A",
+              "type": "number",
+              "colors": [],
+              "decimals": 0,
+              "thresholds": [],
+              "unit": "short",
+              "link": true,
+              "linkTooltip": "Drill down to pods",
+              "linkUrl": "/d/85a562078cdf77779eaa1add43ccec1e/k8s-resources-namespace?var-datasource=$datasource\u0026var-cluster=$cluster\u0026var-namespace=$__cell_1"
+            },
+            {
+              "alias": "Workloads",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Value #B",
+              "type": "number",
+              "colors": [],
+              "decimals": 0,
+              "thresholds": [],
+              "unit": "short",
+              "link": true,
+              "linkTooltip": "Drill down to workloads",
+              "linkUrl": "/d/a87fb0d919ec0ea5f6543124e16c42a5/k8s-resources-workloads-namespace?var-datasource=$datasource\u0026var-cluster=$cluster\u0026var-namespace=$__cell_1"
+            },
+            {
+              "alias": "CPU Usage",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Value #C",
+              "type": "number",
+              "colors": [],
+              "decimals": 2,
+              "thresholds": [],
+              "unit": "short",
+              "linkTooltip": "Drill down",
+              "linkUrl": ""
+            },
+            {
+              "alias": "CPU Requests",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Value #D",
+              "type": "number",
+              "colors": [],
+              "decimals": 2,
+              "thresholds": [],
+              "unit": "short",
+              "linkTooltip": "Drill down",
+              "linkUrl": ""
+            },
+            {
+              "alias": "CPU Requests %",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Value #E",
+              "type": "number",
+              "colors": [],
+              "decimals": 2,
+              "thresholds": [],
+              "unit": "percentunit",
+              "linkTooltip": "Drill down",
+              "linkUrl": ""
+            },
+            {
+              "alias": "CPU Limits",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Value #F",
+              "type": "number",
+              "colors": [],
+              "decimals": 2,
+              "thresholds": [],
+              "unit": "short",
+              "linkTooltip": "Drill down",
+              "linkUrl": ""
+            },
+            {
+              "alias": "CPU Limits %",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Value #G",
+              "type": "number",
+              "colors": [],
+              "decimals": 2,
+              "thresholds": [],
+              "unit": "percentunit",
+              "linkTooltip": "Drill down",
+              "linkUrl": ""
+            },
+            {
+              "alias": "Namespace",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "namespace",
+              "type": "number",
+              "colors": [],
+              "decimals": 2,
+              "thresholds": [],
+              "unit": "short",
+              "link": true,
+              "linkTooltip": "Drill down to pods",
+              "linkUrl": "/d/85a562078cdf77779eaa1add43ccec1e/k8s-resources-namespace?var-datasource=$datasource\u0026var-cluster=$cluster\u0026var-namespace=$__cell"
+            },
+            {
+              "alias": "",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "/.*/",
+              "type": "string",
+              "colors": [],
+              "decimals": 2,
+              "thresholds": [],
+              "unit": "short"
+            }
+          ],
+          "transform": "table",
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "sum(kube_pod_owner{job=\"kube-state-metrics\", cluster=\"$cluster\"}) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "instant": true,
+              "format": "table"
+            },
+            {
+              "refId": "B",
+              "expr": "count(avg(namespace_workload_pod:kube_pod_owner:relabel{cluster=\"$cluster\"}) by (workload, namespace)) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "instant": true,
+              "format": "table"
+            },
+            {
+              "refId": "C",
+              "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{cluster=\"$cluster\"}) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "instant": true,
+              "format": "table"
+            },
+            {
+              "refId": "D",
+              "expr": "sum(namespace_cpu:kube_pod_container_resource_requests:sum{cluster=\"$cluster\"}) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "instant": true,
+              "format": "table"
+            },
+            {
+              "refId": "E",
+              "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{cluster=\"$cluster\"}) by (namespace) / sum(namespace_cpu:kube_pod_container_resource_requests:sum{cluster=\"$cluster\"}) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "instant": true,
+              "format": "table"
+            },
+            {
+              "refId": "F",
+              "expr": "sum(namespace_cpu:kube_pod_container_resource_limits:sum{cluster=\"$cluster\"}) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "instant": true,
+              "format": "table"
+            },
+            {
+              "refId": "G",
+              "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{cluster=\"$cluster\"}) by (namespace) / sum(namespace_cpu:kube_pod_container_resource_limits:sum{cluster=\"$cluster\"}) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "instant": true,
+              "format": "table"
+            }
+          ],
+          "scroll": false
+        }
+      ],
+      "repeat": null
+    },
+    {
+      "title": "Memory",
+      "showTitle": true,
+      "collapse": false,
+      "editable": false,
+      "height": "250px",
+      "panels": [
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 9,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 12,
+          "title": "Memory Usage (w/o cache)",
+          "transparent": false,
+          "type": "graph",
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "fill": 10,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 0,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "",
+              "expr": "sum(container_memory_rss{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", cluster=\"$cluster\", container!=\"\"}) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "legendFormat": "{{namespace}}",
+              "format": "time_series"
+            }
+          ],
+          "tooltip": {
+            "shared": false,
+            "value_type": "individual",
+            "sort": 2
+          },
+          "xaxis": {
+            "format": "",
+            "logBase": 0,
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "logBase": 1,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null
+    },
+    {
+      "title": "Memory Requests",
+      "showTitle": true,
+      "collapse": false,
+      "editable": false,
+      "height": "250px",
+      "panels": [
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 10,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 12,
+          "title": "Requests by Namespace",
+          "transparent": false,
+          "type": "table",
+          "columns": null,
+          "styles": [
+            {
+              "alias": "Time",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "hidden"
+            },
+            {
+              "alias": "Pods",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Value #A",
+              "type": "number",
+              "colors": [],
+              "decimals": 0,
+              "thresholds": [],
+              "unit": "short",
+              "link": true,
+              "linkTooltip": "Drill down to pods",
+              "linkUrl": "/d/85a562078cdf77779eaa1add43ccec1e/k8s-resources-namespace?var-datasource=$datasource\u0026var-cluster=$cluster\u0026var-namespace=$__cell_1"
+            },
+            {
+              "alias": "Workloads",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Value #B",
+              "type": "number",
+              "colors": [],
+              "decimals": 0,
+              "thresholds": [],
+              "unit": "short",
+              "link": true,
+              "linkTooltip": "Drill down to workloads",
+              "linkUrl": "/d/a87fb0d919ec0ea5f6543124e16c42a5/k8s-resources-workloads-namespace?var-datasource=$datasource\u0026var-cluster=$cluster\u0026var-namespace=$__cell_1"
+            },
+            {
+              "alias": "Memory Usage",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Value #C",
+              "type": "number",
+              "colors": [],
+              "decimals": 2,
+              "thresholds": [],
+              "unit": "bytes",
+              "linkTooltip": "Drill down",
+              "linkUrl": ""
+            },
+            {
+              "alias": "Memory Requests",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Value #D",
+              "type": "number",
+              "colors": [],
+              "decimals": 2,
+              "thresholds": [],
+              "unit": "bytes",
+              "linkTooltip": "Drill down",
+              "linkUrl": ""
+            },
+            {
+              "alias": "Memory Requests %",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Value #E",
+              "type": "number",
+              "colors": [],
+              "decimals": 2,
+              "thresholds": [],
+              "unit": "percentunit",
+              "linkTooltip": "Drill down",
+              "linkUrl": ""
+            },
+            {
+              "alias": "Memory Limits",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Value #F",
+              "type": "number",
+              "colors": [],
+              "decimals": 2,
+              "thresholds": [],
+              "unit": "bytes",
+              "linkTooltip": "Drill down",
+              "linkUrl": ""
+            },
+            {
+              "alias": "Memory Limits %",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Value #G",
+              "type": "number",
+              "colors": [],
+              "decimals": 2,
+              "thresholds": [],
+              "unit": "percentunit",
+              "linkTooltip": "Drill down",
+              "linkUrl": ""
+            },
+            {
+              "alias": "Namespace",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "namespace",
+              "type": "number",
+              "colors": [],
+              "decimals": 2,
+              "thresholds": [],
+              "unit": "short",
+              "link": true,
+              "linkTooltip": "Drill down to pods",
+              "linkUrl": "/d/85a562078cdf77779eaa1add43ccec1e/k8s-resources-namespace?var-datasource=$datasource\u0026var-cluster=$cluster\u0026var-namespace=$__cell"
+            },
+            {
+              "alias": "",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "/.*/",
+              "type": "string",
+              "colors": [],
+              "decimals": 2,
+              "thresholds": [],
+              "unit": "short"
+            }
+          ],
+          "transform": "table",
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "sum(kube_pod_owner{job=\"kube-state-metrics\", cluster=\"$cluster\"}) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "instant": true,
+              "format": "table"
+            },
+            {
+              "refId": "B",
+              "expr": "count(avg(namespace_workload_pod:kube_pod_owner:relabel{cluster=\"$cluster\"}) by (workload, namespace)) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "instant": true,
+              "format": "table"
+            },
+            {
+              "refId": "C",
+              "expr": "sum(container_memory_rss{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", cluster=\"$cluster\", container!=\"\"}) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "instant": true,
+              "format": "table"
+            },
+            {
+              "refId": "D",
+              "expr": "sum(namespace_memory:kube_pod_container_resource_requests:sum{cluster=\"$cluster\"}) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "instant": true,
+              "format": "table"
+            },
+            {
+              "refId": "E",
+              "expr": "sum(container_memory_rss{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", cluster=\"$cluster\", container!=\"\"}) by (namespace) / sum(namespace_memory:kube_pod_container_resource_requests:sum{cluster=\"$cluster\"}) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "instant": true,
+              "format": "table"
+            },
+            {
+              "refId": "F",
+              "expr": "sum(namespace_memory:kube_pod_container_resource_limits:sum{cluster=\"$cluster\"}) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "instant": true,
+              "format": "table"
+            },
+            {
+              "refId": "G",
+              "expr": "sum(container_memory_rss{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", cluster=\"$cluster\", container!=\"\"}) by (namespace) / sum(namespace_memory:kube_pod_container_resource_limits:sum{cluster=\"$cluster\"}) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "instant": true,
+              "format": "table"
+            }
+          ],
+          "scroll": false
+        }
+      ],
+      "repeat": null
+    },
+    {
+      "title": "Current Network Usage",
+      "showTitle": true,
+      "collapse": false,
+      "editable": false,
+      "height": "250px",
+      "panels": [
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 11,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 12,
+          "title": "Current Network Usage",
+          "transparent": false,
+          "type": "table",
+          "columns": null,
+          "styles": [
+            {
+              "alias": "Time",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "hidden"
+            },
+            {
+              "alias": "Current Receive Bandwidth",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Value #A",
+              "type": "number",
+              "colors": [],
+              "decimals": 2,
+              "thresholds": [],
+              "unit": "Bps",
+              "linkTooltip": "Drill down",
+              "linkUrl": ""
+            },
+            {
+              "alias": "Current Transmit Bandwidth",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Value #B",
+              "type": "number",
+              "colors": [],
+              "decimals": 2,
+              "thresholds": [],
+              "unit": "Bps",
+              "linkTooltip": "Drill down",
+              "linkUrl": ""
+            },
+            {
+              "alias": "Rate of Received Packets",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Value #C",
+              "type": "number",
+              "colors": [],
+              "decimals": 2,
+              "thresholds": [],
+              "unit": "pps",
+              "linkTooltip": "Drill down",
+              "linkUrl": ""
+            },
+            {
+              "alias": "Rate of Transmitted Packets",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Value #D",
+              "type": "number",
+              "colors": [],
+              "decimals": 2,
+              "thresholds": [],
+              "unit": "pps",
+              "linkTooltip": "Drill down",
+              "linkUrl": ""
+            },
+            {
+              "alias": "Rate of Received Packets Dropped",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Value #E",
+              "type": "number",
+              "colors": [],
+              "decimals": 2,
+              "thresholds": [],
+              "unit": "pps",
+              "linkTooltip": "Drill down",
+              "linkUrl": ""
+            },
+            {
+              "alias": "Rate of Transmitted Packets Dropped",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Value #F",
+              "type": "number",
+              "colors": [],
+              "decimals": 2,
+              "thresholds": [],
+              "unit": "pps",
+              "linkTooltip": "Drill down",
+              "linkUrl": ""
+            },
+            {
+              "alias": "Namespace",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "namespace",
+              "type": "number",
+              "colors": [],
+              "decimals": 2,
+              "thresholds": [],
+              "unit": "short",
+              "link": true,
+              "linkTooltip": "Drill down to pods",
+              "linkUrl": "/d/85a562078cdf77779eaa1add43ccec1e/k8s-resources-namespace?var-datasource=$datasource\u0026var-cluster=$cluster\u0026var-namespace=$__cell"
+            },
+            {
+              "alias": "",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "/.*/",
+              "type": "string",
+              "colors": [],
+              "decimals": 2,
+              "thresholds": [],
+              "unit": "short"
+            }
+          ],
+          "transform": "table",
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "sum(irate(container_network_receive_bytes_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", cluster=\"$cluster\", namespace=~\".+\"}[$__rate_interval])) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "instant": true,
+              "format": "table"
+            },
+            {
+              "refId": "B",
+              "expr": "sum(irate(container_network_transmit_bytes_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", cluster=\"$cluster\", namespace=~\".+\"}[$__rate_interval])) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "instant": true,
+              "format": "table"
+            },
+            {
+              "refId": "C",
+              "expr": "sum(irate(container_network_receive_packets_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", cluster=\"$cluster\", namespace=~\".+\"}[$__rate_interval])) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "instant": true,
+              "format": "table"
+            },
+            {
+              "refId": "D",
+              "expr": "sum(irate(container_network_transmit_packets_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", cluster=\"$cluster\", namespace=~\".+\"}[$__rate_interval])) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "instant": true,
+              "format": "table"
+            },
+            {
+              "refId": "E",
+              "expr": "sum(irate(container_network_receive_packets_dropped_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", cluster=\"$cluster\", namespace=~\".+\"}[$__rate_interval])) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "instant": true,
+              "format": "table"
+            },
+            {
+              "refId": "F",
+              "expr": "sum(irate(container_network_transmit_packets_dropped_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", cluster=\"$cluster\", namespace=~\".+\"}[$__rate_interval])) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "instant": true,
+              "format": "table"
+            }
+          ],
+          "scroll": false
+        }
+      ],
+      "repeat": null
+    },
+    {
+      "title": "Bandwidth",
+      "showTitle": true,
+      "collapse": false,
+      "editable": false,
+      "height": "250px",
+      "panels": [
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 12,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 6,
+          "title": "Receive Bandwidth",
+          "transparent": false,
+          "type": "graph",
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "fill": 10,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 0,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "",
+              "expr": "sum(irate(container_network_receive_bytes_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", cluster=\"$cluster\", namespace=~\".+\"}[$__rate_interval])) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "legendFormat": "{{namespace}}",
+              "format": "time_series"
+            }
+          ],
+          "tooltip": {
+            "shared": false,
+            "value_type": "individual",
+            "sort": 2
+          },
+          "xaxis": {
+            "format": "",
+            "logBase": 0,
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "Bps",
+              "logBase": 1,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        },
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 13,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 6,
+          "title": "Transmit Bandwidth",
+          "transparent": false,
+          "type": "graph",
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "fill": 10,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 0,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "",
+              "expr": "sum(irate(container_network_transmit_bytes_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", cluster=\"$cluster\", namespace=~\".+\"}[$__rate_interval])) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "legendFormat": "{{namespace}}",
+              "format": "time_series"
+            }
+          ],
+          "tooltip": {
+            "shared": false,
+            "value_type": "individual",
+            "sort": 2
+          },
+          "xaxis": {
+            "format": "",
+            "logBase": 0,
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "Bps",
+              "logBase": 1,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null
+    },
+    {
+      "title": "Average Container Bandwidth by Namespace",
+      "showTitle": true,
+      "collapse": false,
+      "editable": false,
+      "height": "250px",
+      "panels": [
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 14,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 6,
+          "title": "Average Container Bandwidth by Namespace: Received",
+          "transparent": false,
+          "type": "graph",
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "fill": 10,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 0,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "",
+              "expr": "avg(irate(container_network_receive_bytes_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", cluster=\"$cluster\", namespace=~\".+\"}[$__rate_interval])) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "legendFormat": "{{namespace}}",
+              "format": "time_series"
+            }
+          ],
+          "tooltip": {
+            "shared": false,
+            "value_type": "individual",
+            "sort": 2
+          },
+          "xaxis": {
+            "format": "",
+            "logBase": 0,
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "Bps",
+              "logBase": 1,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        },
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 15,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 6,
+          "title": "Average Container Bandwidth by Namespace: Transmitted",
+          "transparent": false,
+          "type": "graph",
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "fill": 10,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 0,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "",
+              "expr": "avg(irate(container_network_transmit_bytes_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", cluster=\"$cluster\", namespace=~\".+\"}[$__rate_interval])) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "legendFormat": "{{namespace}}",
+              "format": "time_series"
+            }
+          ],
+          "tooltip": {
+            "shared": false,
+            "value_type": "individual",
+            "sort": 2
+          },
+          "xaxis": {
+            "format": "",
+            "logBase": 0,
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "Bps",
+              "logBase": 1,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null
+    },
+    {
+      "title": "Rate of Packets",
+      "showTitle": true,
+      "collapse": false,
+      "editable": false,
+      "height": "250px",
+      "panels": [
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 16,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 6,
+          "title": "Rate of Received Packets",
+          "transparent": false,
+          "type": "graph",
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "fill": 10,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 0,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "",
+              "expr": "sum(irate(container_network_receive_packets_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", cluster=\"$cluster\", namespace=~\".+\"}[$__rate_interval])) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "legendFormat": "{{namespace}}",
+              "format": "time_series"
+            }
+          ],
+          "tooltip": {
+            "shared": false,
+            "value_type": "individual",
+            "sort": 2
+          },
+          "xaxis": {
+            "format": "",
+            "logBase": 0,
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "logBase": 1,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        },
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 17,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 6,
+          "title": "Rate of Transmitted Packets",
+          "transparent": false,
+          "type": "graph",
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "fill": 10,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 0,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "",
+              "expr": "sum(irate(container_network_transmit_packets_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", cluster=\"$cluster\", namespace=~\".+\"}[$__rate_interval])) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "legendFormat": "{{namespace}}",
+              "format": "time_series"
+            }
+          ],
+          "tooltip": {
+            "shared": false,
+            "value_type": "individual",
+            "sort": 2
+          },
+          "xaxis": {
+            "format": "",
+            "logBase": 0,
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "logBase": 1,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null
+    },
+    {
+      "title": "Rate of Packets Dropped",
+      "showTitle": true,
+      "collapse": false,
+      "editable": false,
+      "height": "250px",
+      "panels": [
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 18,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 6,
+          "title": "Rate of Received Packets Dropped",
+          "transparent": false,
+          "type": "graph",
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "fill": 10,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 0,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "",
+              "expr": "sum(irate(container_network_receive_packets_dropped_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", cluster=\"$cluster\", namespace=~\".+\"}[$__rate_interval])) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "legendFormat": "{{namespace}}",
+              "format": "time_series"
+            }
+          ],
+          "tooltip": {
+            "shared": false,
+            "value_type": "individual",
+            "sort": 2
+          },
+          "xaxis": {
+            "format": "",
+            "logBase": 0,
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "logBase": 1,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        },
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 19,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 6,
+          "title": "Rate of Transmitted Packets Dropped",
+          "transparent": false,
+          "type": "graph",
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "fill": 10,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 0,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "",
+              "expr": "sum(irate(container_network_transmit_packets_dropped_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", cluster=\"$cluster\", namespace=~\".+\"}[$__rate_interval])) by (namespace)",
+              "intervalFactor": 2,
+              "step": 10,
+              "legendFormat": "{{namespace}}",
+              "format": "time_series"
+            }
+          ],
+          "tooltip": {
+            "shared": false,
+            "value_type": "individual",
+            "sort": 2
+          },
+          "xaxis": {
+            "format": "",
+            "logBase": 0,
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "logBase": 1,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null
+    },
+    {
+      "title": "Storage IO",
+      "showTitle": true,
+      "collapse": false,
+      "editable": false,
+      "height": "250px",
+      "panels": [
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 20,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 6,
+          "title": "IOPS(Reads+Writes)",
+          "transparent": false,
+          "type": "graph",
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "decimals": -1,
+          "fill": 10,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 0,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "",
+              "expr": "ceil(sum by(namespace) (rate(container_fs_reads_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", container!=\"\", device=~\"(/dev/)?(mmcblk.p.+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)\", cluster=\"$cluster\", namespace!=\"\"}[$__rate_interval]) + rate(container_fs_writes_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", container!=\"\", cluster=\"$cluster\", namespace!=\"\"}[$__rate_interval])))",
+              "intervalFactor": 2,
+              "step": 10,
+              "legendFormat": "{{namespace}}",
+              "format": "time_series"
+            }
+          ],
+          "tooltip": {
+            "shared": false,
+            "value_type": "individual",
+            "sort": 2
+          },
+          "xaxis": {
+            "format": "",
+            "logBase": 0,
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        },
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 21,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 6,
+          "title": "ThroughPut(Read+Write)",
+          "transparent": false,
+          "type": "graph",
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "fill": 10,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 0,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "",
+              "expr": "sum by(namespace) (rate(container_fs_reads_bytes_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", container!=\"\", device=~\"(/dev/)?(mmcblk.p.+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)\", cluster=\"$cluster\", namespace!=\"\"}[$__rate_interval]) + rate(container_fs_writes_bytes_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", container!=\"\", cluster=\"$cluster\", namespace!=\"\"}[$__rate_interval]))",
+              "intervalFactor": 2,
+              "step": 10,
+              "legendFormat": "{{namespace}}",
+              "format": "time_series"
+            }
+          ],
+          "tooltip": {
+            "shared": false,
+            "value_type": "individual",
+            "sort": 2
+          },
+          "xaxis": {
+            "format": "",
+            "logBase": 0,
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "Bps",
+              "logBase": 1,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null
+    },
+    {
+      "title": "Storage IO - Distribution",
+      "showTitle": true,
+      "collapse": false,
+      "editable": false,
+      "height": "250px",
+      "panels": [
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 22,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 12,
+          "title": "Current Storage IO",
+          "transparent": false,
+          "type": "table",
+          "columns": null,
+          "sort": {
+            "col": 4,
+            "desc": true
+          },
+          "styles": [
+            {
+              "alias": "Time",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "hidden"
+            },
+            {
+              "alias": "IOPS(Reads)",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Value #A",
+              "type": "number",
+              "colors": [],
+              "decimals": -1,
+              "thresholds": [],
+              "unit": "short",
+              "linkTooltip": "Drill down",
+              "linkUrl": ""
+            },
+            {
+              "alias": "IOPS(Writes)",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Value #B",
+              "type": "number",
+              "colors": [],
+              "decimals": -1,
+              "thresholds": [],
+              "unit": "short",
+              "linkTooltip": "Drill down",
+              "linkUrl": ""
+            },
+            {
+              "alias": "IOPS(Reads + Writes)",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Value #C",
+              "type": "number",
+              "colors": [],
+              "decimals": -1,
+              "thresholds": [],
+              "unit": "short",
+              "linkTooltip": "Drill down",
+              "linkUrl": ""
+            },
+            {
+              "alias": "Throughput(Read)",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Value #D",
+              "type": "number",
+              "colors": [],
+              "decimals": 2,
+              "thresholds": [],
+              "unit": "Bps",
+              "linkTooltip": "Drill down",
+              "linkUrl": ""
+            },
+            {
+              "alias": "Throughput(Write)",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Value #E",
+              "type": "number",
+              "colors": [],
+              "decimals": 2,
+              "thresholds": [],
+              "unit": "Bps",
+              "linkTooltip": "Drill down",
+              "linkUrl": ""
+            },
+            {
+              "alias": "Throughput(Read + Write)",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Value #F",
+              "type": "number",
+              "colors": [],
+              "decimals": 2,
+              "thresholds": [],
+              "unit": "Bps",
+              "linkTooltip": "Drill down",
+              "linkUrl": ""
+            },
+            {
+              "alias": "Namespace",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "namespace",
+              "type": "number",
+              "colors": [],
+              "decimals": 2,
+              "thresholds": [],
+              "unit": "short",
+              "link": true,
+              "linkTooltip": "Drill down to pods",
+              "linkUrl": "/d/85a562078cdf77779eaa1add43ccec1e/k8s-resources-namespace?var-datasource=$datasource\u0026var-cluster=$cluster\u0026var-namespace=$__cell"
+            },
+            {
+              "alias": "",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "/.*/",
+              "type": "string",
+              "colors": [],
+              "decimals": 2,
+              "thresholds": [],
+              "unit": "short"
+            }
+          ],
+          "transform": "table",
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "sum by(namespace) (rate(container_fs_reads_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", device=~\"(/dev/)?(mmcblk.p.+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)\", container!=\"\", cluster=\"$cluster\", namespace!=\"\"}[$__rate_interval]))",
+              "intervalFactor": 2,
+              "step": 10,
+              "instant": true,
+              "format": "table"
+            },
+            {
+              "refId": "B",
+              "expr": "sum by(namespace) (rate(container_fs_writes_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", device=~\"(/dev/)?(mmcblk.p.+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)\", container!=\"\", cluster=\"$cluster\", namespace!=\"\"}[$__rate_interval]))",
+              "intervalFactor": 2,
+              "step": 10,
+              "instant": true,
+              "format": "table"
+            },
+            {
+              "refId": "C",
+              "expr": "sum by(namespace) (rate(container_fs_reads_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", device=~\"(/dev/)?(mmcblk.p.+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)\", container!=\"\", cluster=\"$cluster\", namespace!=\"\"}[$__rate_interval]) + rate(container_fs_writes_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", device=~\"(/dev/)?(mmcblk.p.+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)\", container!=\"\", cluster=\"$cluster\", namespace!=\"\"}[$__rate_interval]))",
+              "intervalFactor": 2,
+              "step": 10,
+              "instant": true,
+              "format": "table"
+            },
+            {
+              "refId": "D",
+              "expr": "sum by(namespace) (rate(container_fs_reads_bytes_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", device=~\"(/dev/)?(mmcblk.p.+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)\", container!=\"\", cluster=\"$cluster\", namespace!=\"\"}[$__rate_interval]))",
+              "intervalFactor": 2,
+              "step": 10,
+              "instant": true,
+              "format": "table"
+            },
+            {
+              "refId": "E",
+              "expr": "sum by(namespace) (rate(container_fs_writes_bytes_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", device=~\"(/dev/)?(mmcblk.p.+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)\", container!=\"\", cluster=\"$cluster\", namespace!=\"\"}[$__rate_interval]))",
+              "intervalFactor": 2,
+              "step": 10,
+              "instant": true,
+              "format": "table"
+            },
+            {
+              "refId": "F",
+              "expr": "sum by(namespace) (rate(container_fs_reads_bytes_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", device=~\"(/dev/)?(mmcblk.p.+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)\", container!=\"\", cluster=\"$cluster\", namespace!=\"\"}[$__rate_interval]) + rate(container_fs_writes_bytes_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", device=~\"(/dev/)?(mmcblk.p.+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)\", container!=\"\", cluster=\"$cluster\", namespace!=\"\"}[$__rate_interval]))",
+              "intervalFactor": 2,
+              "step": 10,
+              "instant": true,
+              "format": "table"
+            }
+          ],
+          "scroll": false
+        }
+      ],
+      "repeat": null
+    }
+  ],
+  "templating": {
+    "list": [
+      {
+        "name": "datasource",
+        "type": "datasource",
+        "datasource": null,
+        "refresh": 1,
+        "options": [],
+        "includeAll": false,
+        "allFormat": "",
+        "allValue": "",
+        "multi": false,
+        "multiFormat": "",
+        "query": "prometheus",
+        "regex": "",
+        "current": {
+          "text": [
+            "default"
+          ],
+          "value": "default"
+        },
+        "label": "Data Source",
+        "hide": 0,
+        "sort": 0
+      },
+      {
+        "name": "cluster",
+        "type": "query",
+        "datasource": "$datasource",
+        "refresh": 2,
+        "options": [],
+        "includeAll": false,
+        "allFormat": "",
+        "allValue": "",
+        "multi": false,
+        "multiFormat": "",
+        "query": "label_values(up{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\"}, cluster)",
+        "regex": "",
+        "current": {
+          "text": [
+            ""
+          ],
+          "value": ""
+        },
+        "label": "",
+        "hide": 2,
+        "sort": 1
+      }
+    ]
+  },
+  "annotations": {
+    "list": []
+  },
+  "refresh": "10s",
+  "schemaVersion": 14,
+  "version": 1,
+  "links": [],
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  }
+}

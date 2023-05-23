@@ -1,0 +1,484 @@
+{
+  "uid": "alertmanager-overview",
+  "slug": "",
+  "title": "Alertmanager / Overview",
+  "originalTitle": "",
+  "tags": [
+    "alertmanager-mixin"
+  ],
+  "style": "dark",
+  "timezone": "utc",
+  "editable": false,
+  "hideControls": false,
+  "sharedCrosshair": false,
+  "panels": null,
+  "rows": [
+    {
+      "title": "Alerts",
+      "showTitle": true,
+      "collapse": false,
+      "editable": false,
+      "height": "",
+      "panels": [
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 2,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 6,
+          "title": "Alerts",
+          "description": "current set of alerts stored in the Alertmanager",
+          "transparent": false,
+          "type": "graph",
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "fill": 1,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "sum(alertmanager_alerts{namespace=~\"$namespace\",service=~\"$service\"}) by (namespace,service,instance)",
+              "intervalFactor": 2,
+              "legendFormat": "{{instance}}",
+              "format": "time_series"
+            }
+          ],
+          "tooltip": {
+            "shared": true,
+            "value_type": "individual"
+          },
+          "xaxis": {
+            "format": "",
+            "logBase": 0,
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "none",
+              "logBase": 1,
+              "show": true
+            }
+          ]
+        },
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 3,
+          "isNew": false,
+          "renderer": "flot",
+          "span": 6,
+          "title": "Alerts receive rate",
+          "description": "rate of successful and invalid alerts received by the Alertmanager",
+          "transparent": false,
+          "type": "graph",
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "fill": 1,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "sum(rate(alertmanager_alerts_received_total{namespace=~\"$namespace\",service=~\"$service\"}[$__rate_interval])) by (namespace,service,instance)",
+              "intervalFactor": 2,
+              "legendFormat": "{{instance}} Received",
+              "format": "time_series"
+            },
+            {
+              "refId": "B",
+              "expr": "sum(rate(alertmanager_alerts_invalid_total{namespace=~\"$namespace\",service=~\"$service\"}[$__rate_interval])) by (namespace,service,instance)",
+              "intervalFactor": 2,
+              "legendFormat": "{{instance}} Invalid",
+              "format": "time_series"
+            }
+          ],
+          "tooltip": {
+            "shared": true,
+            "value_type": "individual"
+          },
+          "xaxis": {
+            "format": "",
+            "logBase": 0,
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "ops",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "ops",
+              "logBase": 1,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null
+    },
+    {
+      "title": "Notifications",
+      "showTitle": true,
+      "collapse": false,
+      "editable": false,
+      "height": "",
+      "panels": [
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 4,
+          "isNew": false,
+          "renderer": "flot",
+          "repeat": "integration",
+          "span": 0,
+          "title": "$integration: Notifications Send Rate",
+          "description": "rate of successful and invalid notifications sent by the Alertmanager",
+          "transparent": false,
+          "type": "graph",
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "fill": 1,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "sum(rate(alertmanager_notifications_total{namespace=~\"$namespace\",service=~\"$service\", integration=\"$integration\"}[$__rate_interval])) by (integration,namespace,service,instance)",
+              "intervalFactor": 2,
+              "legendFormat": "{{instance}} Total",
+              "format": "time_series"
+            },
+            {
+              "refId": "B",
+              "expr": "sum(rate(alertmanager_notifications_failed_total{namespace=~\"$namespace\",service=~\"$service\", integration=\"$integration\"}[$__rate_interval])) by (integration,namespace,service,instance)",
+              "intervalFactor": 2,
+              "legendFormat": "{{instance}} Failed",
+              "format": "time_series"
+            }
+          ],
+          "tooltip": {
+            "shared": true,
+            "value_type": "individual"
+          },
+          "xaxis": {
+            "format": "",
+            "logBase": 0,
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "ops",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "ops",
+              "logBase": 1,
+              "show": true
+            }
+          ]
+        },
+        {
+          "datasource": "$datasource",
+          "editable": false,
+          "error": false,
+          "gridPos": {},
+          "id": 5,
+          "isNew": false,
+          "renderer": "flot",
+          "repeat": "integration",
+          "span": 0,
+          "title": "$integration: Notification Duration",
+          "description": "latency of notifications sent by the Alertmanager",
+          "transparent": false,
+          "type": "graph",
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "fill": 1,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "histogram_quantile(0.99,\n  sum(rate(alertmanager_notification_latency_seconds_bucket{namespace=~\"$namespace\",service=~\"$service\", integration=\"$integration\"}[$__rate_interval])) by (le,namespace,service,instance)\n) \n",
+              "intervalFactor": 2,
+              "legendFormat": "{{instance}} 99th Percentile",
+              "format": "time_series"
+            },
+            {
+              "refId": "B",
+              "expr": "histogram_quantile(0.50,\n  sum(rate(alertmanager_notification_latency_seconds_bucket{namespace=~\"$namespace\",service=~\"$service\", integration=\"$integration\"}[$__rate_interval])) by (le,namespace,service,instance)\n) \n",
+              "intervalFactor": 2,
+              "legendFormat": "{{instance}} Median",
+              "format": "time_series"
+            },
+            {
+              "refId": "C",
+              "expr": "sum(rate(alertmanager_notification_latency_seconds_sum{namespace=~\"$namespace\",service=~\"$service\", integration=\"$integration\"}[$__rate_interval])) by (namespace,service,instance)\n/\nsum(rate(alertmanager_notification_latency_seconds_count{namespace=~\"$namespace\",service=~\"$service\", integration=\"$integration\"}[$__rate_interval])) by (namespace,service,instance)\n",
+              "intervalFactor": 2,
+              "legendFormat": "{{instance}} Average",
+              "format": "time_series"
+            }
+          ],
+          "tooltip": {
+            "shared": true,
+            "value_type": "individual"
+          },
+          "xaxis": {
+            "format": "",
+            "logBase": 0,
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "s",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "s",
+              "logBase": 1,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null
+    }
+  ],
+  "templating": {
+    "list": [
+      {
+        "name": "datasource",
+        "type": "datasource",
+        "datasource": null,
+        "refresh": 1,
+        "options": [],
+        "includeAll": false,
+        "allFormat": "",
+        "allValue": "",
+        "multi": false,
+        "multiFormat": "",
+        "query": "prometheus",
+        "regex": "",
+        "current": {
+          "text": [
+            "Prometheus"
+          ],
+          "value": "Prometheus"
+        },
+        "label": "Data Source",
+        "hide": 0,
+        "sort": 0
+      },
+      {
+        "name": "namespace",
+        "type": "query",
+        "datasource": "$datasource",
+        "refresh": 2,
+        "options": [],
+        "includeAll": false,
+        "allFormat": "",
+        "allValue": "",
+        "multi": false,
+        "multiFormat": "",
+        "query": "label_values(alertmanager_alerts, namespace)",
+        "regex": "",
+        "current": {
+          "text": [
+            ""
+          ],
+          "value": ""
+        },
+        "label": "namespace",
+        "hide": 0,
+        "sort": 1
+      },
+      {
+        "name": "service",
+        "type": "query",
+        "datasource": "$datasource",
+        "refresh": 2,
+        "options": [],
+        "includeAll": false,
+        "allFormat": "",
+        "allValue": "",
+        "multi": false,
+        "multiFormat": "",
+        "query": "label_values(alertmanager_alerts, service)",
+        "regex": "",
+        "current": {
+          "text": [
+            ""
+          ],
+          "value": ""
+        },
+        "label": "service",
+        "hide": 0,
+        "sort": 1
+      },
+      {
+        "name": "integration",
+        "type": "query",
+        "datasource": "$datasource",
+        "refresh": 2,
+        "options": [],
+        "includeAll": true,
+        "allFormat": "",
+        "allValue": "",
+        "multi": false,
+        "multiFormat": "",
+        "query": "label_values(alertmanager_notifications_total{integration=~\".*\"}, integration)",
+        "regex": "",
+        "current": {
+          "text": [
+            "all"
+          ],
+          "value": "$__all"
+        },
+        "label": "",
+        "hide": 2,
+        "sort": 1
+      }
+    ]
+  },
+  "annotations": {
+    "list": []
+  },
+  "refresh": "30s",
+  "schemaVersion": 14,
+  "version": 1,
+  "links": [],
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "graphTooltip": 1
+}
